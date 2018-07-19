@@ -48,6 +48,17 @@ if [ ! -d ${LICHEE_BOOT_DIR} -o \
     exit 1
 fi
 
+# check host platform
+LICHEE_HOST_PLATFORM='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Darwin' ]]; then
+   LICHEE_HOST_PLATFORM='darwin'
+   printf "Host Platform = darwin\n"
+else
+   LICHEE_HOST_PLATFORM='linux'
+   printf "Host Platform = linux\n"
+fi
+
 # export importance variable
 export LICHEE_TOP_DIR
 export LICHEE_BOOT_DIR
@@ -56,6 +67,7 @@ export LICHEE_KERN_DIR
 export LICHEE_TOOLS_DIR
 export LICHEE_UBOOT_DIR
 export LICHEE_OUT_DIR
+export LICHEE_HOST_PLATFORM
 
 # return true if used default config
 function check_br_defconf()
@@ -412,7 +424,13 @@ function clkernel()
 function mkuboot()
 {
     mk_info "build u-boot ..."
-
+    
+    # Set up cross compiler depending on Host Computer
+    if [[ $LICHEE_HOST_PLATFORM == 'darwin' ]]; then
+    	export CROSS_COMPILE=arm-linux-gnueabihf-
+    else
+    	export CROSS_COMPILE=arm-linux-gnueabi-
+    fi
     local build_script
 
     if check_uboot_defconf ; then
