@@ -14,18 +14,24 @@ set -e
 
 function build_buildroot()
 {
-    local tooldir="${LICHEE_BR_OUT}/external-toolchain"
-    mkdir -p ${tooldir}
-    if [ -f ${tooldir}/.installed ] ; then
-        printf "external toolchain has been installed\n"
-    else
-        printf "installing external toolchain\n"
-        printf "please wait for a few minutes ...\n"
-        tar --strip-components=1 \
-            -jxf ${LICHEE_BR_DIR}/dl/gcc-linaro.tar.bz2 \
-            -C ${tooldir}
-        [ $? -eq 0 ] && touch ${tooldir}/.installed
-    fi
+  local archive="gcc-linaro.tar.bz2"
+  local tooldir="${LICHEE_BR_OUT}/external-toolchain"
+  mkdir -p ${tooldir}
+  if [ -f ${tooldir}/.installed ] ; then
+      printf "external toolchain has been installed\n"
+  else
+      printf "installing external toolchain\n"
+      printf "please wait for a few minutes ...\n"
+  # Extract correct cross compiler for MacOS
+  if [[ $LICHEE_HOST_PLATFORM == 'darwin' ]]; then
+      archive="gnueabi.tbz2"
+#   			archive="gcc-arm-none-eabi-7-2018-q2-update-mac.tar.bz2"
+  fi
+      tar --strip-components=1 \
+          -jxf ${LICHEE_BR_DIR}/dl/${archive} \
+          -C ${tooldir}
+      [ $? -eq 0 ] && touch ${tooldir}/.installed
+  fi
 
     export PATH=${tooldir}/bin:${PATH}
 }
