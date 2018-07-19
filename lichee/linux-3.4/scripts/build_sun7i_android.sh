@@ -13,7 +13,14 @@
 
 set -e
 
-cpu_cores=`cat /proc/cpuinfo | grep "processor" | wc -l`
+#Added code to read number of processor cores on Mac Computer
+cpu_cores=1
+if [[ $LICHEE_HOST_PLATFORM == 'darwin' ]]; then
+	cpu_cores=`sysctl -a | grep machdep.cpu | grep core_count | cut -d: -f2`
+else
+	cpu_cores=`cat /proc/cpuinfo | grep "processor" | wc -l`;
+fi
+
 if [ ${cpu_cores} -le 8 ] ; then
     jobs=${cpu_cores}
 else
