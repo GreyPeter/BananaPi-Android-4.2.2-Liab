@@ -95,7 +95,8 @@ RESUME0_LD_FILE = resume0.xn
 CC = $(CROSS_COMPILE)gcc
 
 #CFLAGS = -g -c -nostdlib -march=armv7-a -marm -fno-unwind-tables -fno-asynchronous-unwind-tables -mlittle-endian  --min_array_alignment=4 --no_unaligned_access -O2 
-CFLAGS = -g -c -nostdlib -march=armv7-a -marm -D__STANDBY_MODULE__ -fno-unwind-tables -fno-asynchronous-unwind-tables -mlittle-endian -O0 --min_array_alignment=4 --no_unaligned_access
+CFLAGS = -g -c -nostdlib -march=armv7-a -marm -D__STANDBY_MODULE__ -fno-unwind-tables -fno-asynchronous-unwind-tables -mlittle-endian -O0
+## These flags do not work with MacOS Crosscompiler --min_array_alignment=4 --no_unaligned_access
 CFLAGS_DRAM_VADDR = -D DRAM_USE_VA_ADDR
 all: standby suspend resume1 resume0
 
