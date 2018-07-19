@@ -87,7 +87,10 @@ elif [ ${module} = "mrproper" ] ; then
     mkmrproper
 elif [ ${module} = "distclean" ] ; then
     mkdistclean
-else
+elif [ ${module} = "help" ] ; then
+    mkhelp
+elif [ ${module} = "settings" ] ; then
+    mksettingelse
     mk_error "invalid module '${module}'"
     exit 1
 fi
