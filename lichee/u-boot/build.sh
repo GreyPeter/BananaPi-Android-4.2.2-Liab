@@ -13,15 +13,30 @@
 #   1. Board option is useless.
 #   2. We Only support to copy u-boot.bin to common directory right now.
 
-cpu_cores=`cat /proc/cpuinfo | grep "processor" | wc -l`
-if [ ${cpu_cores} -le 8 ] ; then
-    jobs=${cpu_cores}
+#Check number of CPU Cores on host platform to set jobs count
+if [[ $LICHEE_HOST_PLATFORM == 'darwin' ]]; then
+  cpu_cores='sysctl -a | grep machdep.cpu | grep core_count'
 else
-    jobs=`expr ${cpu_cores} / 2`
-fi
+  cpu_cores=`cat /proc/cpuinfo | grep "processor" | wc -l`
+  if [ ${cpu_cores} -le 8 ] ; then
+      jobs=${cpu_cores}
+    else
+      jobs=`expr ${cpu_cores} / 2`
+    fi
+  fi
 
 function build_uboot()
 {
+tooldir="$(dirname `pwd`)/out/${LICHEE_PLATFORM}/common/buildroot/external-toolchain"
+  if [ -d ${tooldir} ] ; then
+      if ! echo $PATH | grep -q "$tooldir" ; then
+          export PATH=${tooldir}/bin:$PATH
+      fi
+  else
+      echo "Please build buildroot first"
+      exit 1
+  fi
+  
     case "$1" in
         clean)
             make distclean CROSS_COMPILE=arm-linux-gnueabi-
