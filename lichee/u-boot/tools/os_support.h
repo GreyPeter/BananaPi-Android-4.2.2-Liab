@@ -29,7 +29,7 @@
 #endif
 
 #ifdef __APPLE__
-#include "getline.h"
+//#include "getline.h"
 #endif
 
 #endif /* __OS_SUPPORT_H_ */
