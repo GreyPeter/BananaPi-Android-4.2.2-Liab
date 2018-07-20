@@ -1,6 +1,6 @@
 # BananaPi-Android-4.2.2-Liab
 # BananaPi Android 4.2.2 sources (liab version)
-
+Have forked this project to try and get it to compile using MacOS (GreyPeter)
 =======
 
 To get started:
