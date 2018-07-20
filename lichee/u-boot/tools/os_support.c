@@ -24,5 +24,5 @@
 #include "mingw_support.c"
 #endif
 #ifdef __APPLE__
-#include "getline.c"
+//#include "getline.c"
 #endif
