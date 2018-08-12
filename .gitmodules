@@ -1,0 +1,3 @@
+[submodule "lichee/linux-3.4"]
+	path = lichee/linux-3.4
+	url = https://github.com/GreyPeter/linux-3.4.git
