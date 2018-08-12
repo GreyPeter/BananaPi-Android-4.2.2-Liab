@@ -15,8 +15,10 @@
 
 #Check number of CPU Cores on host platform to set jobs count
 if [[ $LICHEE_HOST_PLATFORM == 'darwin' ]]; then
+  export CROSS_COMPILE=arm-linux-gnueabihf-
   cpu_cores='sysctl -a | grep machdep.cpu | grep core_count'
 else
+  export CROSS_COMPILE=arm-linux-gnueabi-
   cpu_cores=`cat /proc/cpuinfo | grep "processor" | wc -l`
   if [ ${cpu_cores} -le 8 ] ; then
       jobs=${cpu_cores}
@@ -36,14 +38,14 @@ tooldir="$(dirname `pwd`)/out/${LICHEE_PLATFORM}/common/buildroot/external-toolc
       echo "Please build buildroot first"
       exit 1
   fi
-  
+
     case "$1" in
         clean)
-            make distclean CROSS_COMPILE=arm-linux-gnueabi-
+            make distclean CROSS_COMPILE=${CROSS_COMPILE}
             ;;
         *)
-            make distclean CROSS_COMPILE=arm-linux-gnueabi-
-            make -j${jobs} ${LICHEE_CHIP} CROSS_COMPILE=arm-linux-gnueabi-
+            make distclean CROSS_COMPILE=${CROSS_COMPILE}
+            make -j${jobs} ${LICHEE_CHIP} CROSS_COMPILE=${CROSS_COMPILE}
             [ $? -ne 0 ] && exit 1
             cp -f u-boot.bin ../out/${LICHEE_PLATFORM}/common/
             ;;
