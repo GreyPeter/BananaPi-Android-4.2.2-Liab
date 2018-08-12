@@ -1,4 +1,7 @@
 #!/bin/bash
+export LC_CTYPE=C
+export LANG=C
+
 cd ../busybox-1.23.1
 export PATH=$PATH:../lichee/out/android/common/buildroot/external-toolchain/bin/
 make
