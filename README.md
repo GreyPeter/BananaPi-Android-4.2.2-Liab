@@ -5,11 +5,12 @@ Have forked this project to try and get it to compile using MacOS (GreyPeter)
 
 To get started:
 
-apt-get install git #Install git if required
+#Install git if required
+apt-get install git 
 
 #Get the Source code
 
-git clone https://github.com/ChrisP-Android/BananaPi-Android-4.2.2-Liab android 
+git clone --recurse-submodules https://github.com/GreyPeter/BananaPi-Android-4.2.2-Peter.git android 
 
 #Get svox PicoTTs from google to avoid DMCA notification on this repo!  
   
