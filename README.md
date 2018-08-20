@@ -25,16 +25,10 @@ folder android/user : Various scripts and file to personnalize build without cha
 Here is what I've done to this issue:
 
 sudo port install libelf
-
-sudo ln -s /opt/local/include/libelf /usr/include/libelf
-
+sudo mkdir /us	r/local/include
+sudo ln -s /opt/local/include/libelf /usr/local/include/libelf
 Download elf.h https://issuetracker.google.com/action/issues/36907893/attachments/10503034?download=true
-
-copy elf.h to /usr/include
-
-sudo cp ~/Downloads/elf.h /usr/include
-
+copy elf.h to /usr/local/include 
+sudo cp ~/Downloads/elf.h /usr/local/include
 sudo port install gsed
-
-create /usr/include/malloc.h to simply contain #include <sys/malloc.h> 
-
+create /usr/local/include/malloc.h to simply contain #include <sys/malloc.h> 
