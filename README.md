@@ -22,11 +22,19 @@ folder android/scripts : Various scripts to build and configure (to be detailed 
 folder android/user : Various scripts and file to personnalize build without changing the code itself (to be detailed later)
 
 # Missing elf.h
-Here is what I've done to this issue: 
+Here is what I've done to this issue:
+
 sudo port install libelf
+
 sudo ln -s /opt/local/include/libelf /usr/include/libelf
+
 Download elf.h https://issuetracker.google.com/action/issues/36907893/attachments/10503034?download=true
-copy elf.h to /usr/include 
+
+copy elf.h to /usr/include
+
 sudo cp ~/Downloads/elf.h /usr/include
+
 sudo port install gsed
+
 create /usr/include/malloc.h to simply contain #include <sys/malloc.h> 
+
