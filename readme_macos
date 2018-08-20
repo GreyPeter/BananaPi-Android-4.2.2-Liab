@@ -1,8 +1,10 @@
-Install u-boot-tools
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null brew install u-boot-tools
+***Install u-boot-tools***
 
-Install elf.h
-Here is what I've done to this issue: 
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null 
+brew install u-boot-tools
+
+***Install elf.h***
+
 sudo port install libelf
 sudo mkdir /us	r/local/include
 sudo ln -s /opt/local/include/libelf /usr/local/include/libelf
