@@ -32,6 +32,32 @@ sudo ln -s /opt/local/include/libelf /usr/local/include/libelf
 
 Download elf.h https://issuetracker.google.com/action/issues/36907893/attachments/10503034?download=true
 
+Add the following to elf.h
+#define EM_S390 22
+#define R_386_NONE 0
+#define R_386_32 1
+#define R_386_PC32 2
+#define R_ARM_NONE 0
+#define R_ARM_PC24 1
+#define R_ARM_ABS32 2
+#define R_MIPS_NONE 0
+#define R_MIPS_16 1
+#define R_MIPS_32 2
+#define R_MIPS_REL32 3
+#define R_MIPS_26 4
+#define R_MIPS_HI16 5
+#define R_MIPS_LO16 6
+#define EM_S390 22
+#define R_MIPS_64 18
+#define R_390_32 22
+#define R_390_64 22
+#define R_X86_64_64 1
+#define R_SPARC_64 32
+#define R_SH_DIR32 1
+#define R_PPC_ADDR32 1
+#define R_PPC64_ADDR64 38
+#define R_IA64_IMM64 0x23
+
 copy elf.h to /usr/local/include 
 
 sudo cp ~/Downloads/elf.h /usr/local/include
