@@ -23,11 +23,17 @@ echo
 
 extract-bsp
 
-processors=$(sysctl -n hw.ncpu)
+case `uname -s` in
+    Darwin)
+        processors=$(sysctl -n hw.ncpu)
+        ;;
+    *)
+        processors=$(nproc)
+        ;;
+esac
 echo "Number of processors = $processors"
 make -j $processors
 
-#make -j`nproc`
 if [ $? != 0 ] ; then
 echo
 echo "Error make!"
