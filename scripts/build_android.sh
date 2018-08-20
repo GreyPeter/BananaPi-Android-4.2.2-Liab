@@ -22,7 +22,12 @@ done
 echo
 
 extract-bsp
-make -j`nproc`
+
+processors=$(sysctl -n hw.ncpu)
+echo "Number of processors = $processors"
+make -j $processors
+
+#make -j`nproc`
 if [ $? != 0 ] ; then
 echo
 echo "Error make!"
