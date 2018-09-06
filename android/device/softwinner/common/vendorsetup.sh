@@ -35,7 +35,7 @@ function extract-bsp()
 	chmod 0755 modules/modules/*
 
 # create modules.mk
-(cat << EOF) > ./modules/modules.mk 
+cat << EOF > ./modules/modules.mk 
 # modules.mk generate by extract-files.sh , do not edit it !!!!
 PRODUCT_COPY_FILES += \\
 	\$(call find-copy-subdir-files,*,\$(LOCAL_PATH)/modules,system/vendor/modules)
