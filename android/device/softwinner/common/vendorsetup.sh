@@ -15,7 +15,7 @@ function extract-bsp()
 	LINUXOUT_DIR=$LICHEE_DIR/out/android/common
 	LINUXOUT_MODULE_DIR=$LICHEE_DIR/out/android/common/lib/modules/*/*
 	CURDIR=$PWD
-
+	DEVICE=$T/device/*/$(get_build_var TARGET_DEVICE)
 	cd $DEVICE
 
 	#extract kernel
